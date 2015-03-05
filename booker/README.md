@@ -9,17 +9,17 @@ Simple Orion Context Broker Node app
 Get Orion Context Broker version:
 
 ```
-./booker.js
+node booker.js
 ```
 
 Get table1 booking status:
 
 ```
-./booker.js --table table1
+node booker.js --table table1
 ```
 
 Set table1 booking status:
 
 ```
-./booker.js --table table1 --booked true
+node booker.js --table table1 --booked true
 ```
