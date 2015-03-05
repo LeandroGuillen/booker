@@ -1,6 +1,10 @@
 # booker
 Simple Orion Context Broker Node app
 
+## Dependencies
+* request
+* optimist
+
 ## Examples:
 Get Orion Context Broker version:
 
