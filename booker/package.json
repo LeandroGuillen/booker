@@ -1,0 +1,16 @@
+{
+  "name": "booker",
+  "version": "1.0.0",
+  "description": "Simple Orion Context Broker Node app",
+  "main": "booker.js",
+  "dependencies": {
+    "optimist": "^0.6.1",
+    "request": "^2.63.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
