@@ -39,9 +39,9 @@ type Door struct {
 }
 
 func main() {
-	QueryContext([]NGSI{&Room{Name: "Bedroom1"}}, nil)
-	QueryContext([]NGSI{&Room{Name: "Kitchen"}}, []string{"temperature"})
-	QueryContext([]NGSI{&Room{Name: "Bedroom1"}, &Room{Name: "Kitchen"}}, nil)
+	QueryContext([]ContextEntity{ContextEntity{Id: "Bedroom1"}}, nil)
+	QueryContext([]ContextEntity{ContextEntity{Id: "Kitchen"}}, []string{"temperature"})
+	QueryContext([]ContextEntity{ContextEntity{Id: "Bedroom1"}, ContextEntity{Id: "Kitchen"}}, nil)
 	QueryContext([]ContextEntity{ContextEntity{Id: "Bedroom.*", IsPattern: true}}, nil)
 	QueryContext([]ContextEntity{ContextEntity{Id: ".*door", IsPattern: true}}, []string{"closed"})
 }
