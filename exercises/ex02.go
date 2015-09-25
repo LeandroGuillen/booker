@@ -71,23 +71,25 @@ func (d *Door) ToNGSI() ContextElement {
 }
 
 func main() {
-
-	room1 := Room{"Bedroom1", 25.5, false, "OK"}
-	room2 := Room{"Bedroom2", 26.0, true, "Needs cleaning"}
-	room3 := Room{"Kitchen", 28.9, true, "OK"}
-	door1 := Door{"Frondoor", false, true}
-	door2 := Door{"Backdoor", false, false}
-
 	// Create array of context elements
-	entities := []ContextElement{
-		room1.ToNGSI(),
-		room2.ToNGSI(),
-		room3.ToNGSI(),
-		door1.ToNGSI(),
-		door2.ToNGSI(),
+	entities := []NGSI{
+		&Room{"Bedroom1", 25.5, false, "OK"},
+		&Room{"Bedroom2", 26.0, true, "Needs cleaning"},
+		&Room{"Kitchen", 28.9, true, "OK"},
+		&Door{"Frontdoor", false, true},
+		&Door{"Backdoor", false, false},
 	}
 
-	ucr := &UpdateContextRequest{entities, "APPEND"}
+	UpdateContext(entities, "APPEND")
+}
+
+func UpdateContext(entities []NGSI, action string) error {
+	contextElements := make([]ContextElement, len(entities))
+	for i, e := range entities {
+		contextElements[i] = e.ToNGSI()
+	}
+
+	ucr := &UpdateContextRequest{contextElements, action}
 
 	ucr_json, _ := json.Marshal(ucr)
 	fmt.Println(string(ucr_json))
@@ -100,7 +102,7 @@ func main() {
 	client := &http.Client{}
 	resp, err := client.Do(req)
 	if err != nil {
-		panic(err)
+		return err
 	}
 	defer resp.Body.Close()
 
@@ -108,4 +110,6 @@ func main() {
 	fmt.Println("response Headers:", resp.Header)
 	body, _ := ioutil.ReadAll(resp.Body)
 	fmt.Println("response Body:", string(body))
+
+	return nil
 }
