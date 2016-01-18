@@ -21,22 +21,15 @@ var urlBase = "http://localhost:1026"
 if (argv.table && (argv.booked || argv.book || argv.unbook))
 {
 	if (argv.book) {
-		payload={
-	    	"booked": "true"
-		}
 		newStatus = "true"
 	} else if (argv.unbook) {
-		payload={
-	    	"booked": "false"
-		}
 		newStatus = "false"
 	} else {
-		
 		newStatus = argv.booked
 	}
 
 	payload={
-		   "booked": argv.booked
+		   "booked": newStatus
 	}
 		 
 	request.patch(
